@@ -2,6 +2,8 @@
 
 **Version 1.0.0 — public patch-only release**
 
+**Download:** [Latest release](https://github.com/wsuraiders33-maker/FCCD-Prestige-Based-Dynasty/releases/latest) — choose the `FCCD_Prestige_Based_Dynasty_v1_0_0_Public_Release.zip` asset, **not** GitHub's automatically generated source-code ZIP.
+
 An unofficial modification for **Football Coach: College Dynasty** that scales roster capacity, recruiting resources and roster planning according to each school's prestige. It works with compatible standard college and custom universes. **The Ohio high-school universes used for development are not required.**
 
 ## What you need

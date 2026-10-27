@@ -1,45 +1,41 @@
 # FCCD Prestige-Based Dynasty
 
-**Version 1.0.0 — public patch-only release**
+**v1.0.3 — Adaptive Recruiting and Positional Balance**
 
-**Download:** [Latest release](https://github.com/wsuraiders33-maker/FCCD-Prestige-Based-Dynasty/releases/latest) — choose the `FCCD_Prestige_Based_Dynasty_v1_0_0_Public_Release.zip` asset, **not** GitHub's automatically generated source-code ZIP.
+**Download:** [GitHub Releases](https://github.com/wsuraiders33-maker/FCCD-Prestige-Based-Dynasty/releases/latest). For v1.0.3, choose `FCCD_Prestige_Based_Dynasty_v1_0_3_Public_Release.zip` from **Assets** after the release asset has been uploaded. Do **not** download GitHub's automatically generated source-code ZIP.
 
-An unofficial modification for **Football Coach: College Dynasty** that scales roster capacity, recruiting resources and roster planning according to each school's prestige. It works with compatible standard college and custom universes. **The Ohio high-school universes used for development are not required.**
+An unofficial modification for **Football Coach: College Dynasty** that scales roster capacity, recruiting resources and roster planning to school prestige. It works with standard college and compatible custom universes, not exclusively Ohio high-school universes.
 
-## What you need
+## What's new in v1.0.3
 
-- A legally installed, compatible, **unmodified** Steam copy of Football Coach: College Dynasty.
-- Windows with PowerShell, included in standard Windows installations.
-- The game fully closed while installing or restoring.
-- Enough free disk space to reconstruct game files and retain backup copies.
+- **Adaptive recruit supply:** Each year's generated or imported custom recruiting class is capped at `min(original class count, round(sum of non-FCS schools' prestige-adjusted roster caps * 30 / 85))`. Targets adapt to team count and annual prestige.
+- **Oversized imported classes:** Randomly trim source recruits without forced quotas for positions, states, star ratings or potential. Retained prospects keep their source attributes.
+- **Position-balanced AI recruiting:** AI teams account for returning players and commitments before chasing recruits at positions with limited room, including kickers.
+- **User auto-recruiting protections:** Those same safeguards apply when automatic recruiting is enabled for the user team. Manual recruiting remains unchanged.
+- **Previous features preserved:** RC7 prestige scaling, the v1.0.1 AI depth repair, the v1.0.2 transfer shortlist and Top Five + User recruiting previews. Normal college redshirts and eligibility are unchanged.
 
-**Important:** This installer only supports the exact original game-file version identified by its built-in SHA-256 hashes. It does not overwrite a different game version or another mod. This is intentional. Steam updates may make this patch incompatible until a new release is verified.
+## Requirements
 
-The ZIP contains a compact binary patch and scripts, **not complete commercial-game binaries**. No Python, Node.js, Git or separate patcher is required.
+- Exact supported **Windows/Steam FCCD 1.6.5** file version, enforced with SHA-256 checks.
+- Close the game and independently back up saves before installing or restoring.
+- At least **1 GB** free on the Steam game drive.
+- **Do not stack** this mod with an Ohio high-school or other unrelated FCCD mod.
+- Patch-only download; the ZIP does not redistribute complete commercial game binaries.
 
 ## Install
 
-1. Download and **extract the entire ZIP** to a normal folder.
-2. Close the game.
-3. Double-click **`INSTALL.bat`**.
-4. Press **Enter** when asked for the game `resources` folder if you use the normal Steam location. If your game is elsewhere, enter its full `resources` directory (the folder with `app.asar`).
-5. The installer verifies the vanilla game files, unpacked dependencies and patch payload **before making any changes**.
-6. When prompted, type **`INSTALL`** and press Enter (capitalization does not matter).
-7. Wait for **`PASS: FCCD Prestige-Based Dynasty v1.0.0 installed and verified.`**
+1. Download and **extract the complete v1.0.3 release ZIP** outside the Steam game directory.
+2. Close FCCD. Back up important saves.
+3. **From v1.0.2 or earlier public releases:** run your *previous* release's `RESTORE.bat` first, or use Steam Verify Integrity to return to clean game files. The v1.0.3 installer intentionally refuses to overwrite v1.0.2 directly.
+4. **From a verified v1.0.3 one-click private build:** the installer recognizes the existing completed installation; don't stack older patches.
+5. Double-click the **top-level `INSTALL.bat`**, type `INSTALL` and look for `PASS`.
+6. Run **`VERIFY.bat`** to verify both the mod files and original-game backup.
 
-The installer reconstructs the verified release from your own original files, then creates a backup before replacing anything. Backups are stored in `resources\FCCD_PrestigeBasedDynasty_v1_Backup`.
+The package stages a patched build separately, checks SHA-256 hashes and preserves stock backups. Do **not** run individual scripts from the `Engine` folder.
 
-Your dynasty saves are **not modified by the installer**, but keeping independent backups of important saves is still recommended.
+## Restore stock game files
 
-## Restore the original game
-
-1. Close FCCD.
-2. Double-click **`RESTORE.bat`** from the same extracted release folder.
-3. Select the same `resources` folder used for installation.
-4. Type **`RESTORE`** and press Enter.
-5. Look for **`PASS: Unmodified original game files restored and verified.`**
-
-The restore tool verifies both the modded files and the original backups before restoring them. It retains the backups afterward.
+Close FCCD, run the **v1.0.3 ZIP's top-level `RESTORE.bat`**, type `RESTORE` and confirm `PASS`. Run `VERIFY.bat` afterward; it should report **stock files** and say v1.0.3 is not installed. This restores the original Steam game, **not v1.0.2**. Do not bypass hash mismatches or delete verified backup files.
 
 ## Prestige scaling
 
@@ -68,20 +64,11 @@ The mod also scales scholarship allowances, recruiting resources, preseason camp
 
 Some walk-ons are intentional, particularly at very small programs. The mod does not guarantee that every school signs players at every desired position.
 
-## Compatibility and troubleshooting
 
-- The installer changes only `resources\app.asar` and `resources\app.asar.unpacked\dist\main\coreWorker.js`.
-- If it reports an unrecognized original hash, **do not override the check**. Use Steam's file-integrity verification (after preserving any personal mod backups) and ensure you have the supported game version.
-- If your game is installed in a nonstandard Steam library, enter its `resources` directory when prompted.
-- If you have RC7 or another test mod installed, first restore its original backed-up files; this public installer does **not** install on top of another mod.
-- If the game updates, this patch may no longer install or may be replaced by the update. Wait for a compatible release if necessary.
-- If Windows security policy blocks PowerShell scripts, review the source scripts or use an environment that permits running them. Do not disable organizational security rules without authorization.
-- Keep your original backup folder and extracted release ZIP until you are finished with the mod.
+## Testing and limitations
 
-## Verification and scope
+Live v1.0.3 custom-class tests: 2025 Northmont imported **2,500 → 1,579** recruits and 2026 Northmont imported **3,500 → 1,571**, with targets changing as roster capacity changed. Retained imported recruits were matched to the source JSON and checked for attribute preservation and sampling characteristics. A separate 148-school Dartmouth dynasty tested generation, rollover, roster caps and kicker coverage. The public ZIP's gameplay patch payload is identical to the tested one-click private package; a separate Windows installation and restore test of the newly relabeled ZIP has not been observed here.
 
-This patch reconstructs the **exact gameplay files of the RC7 build selected for v1.0.0**. Their reconstructed bytes were independently compared with the tested RC7 files.
+See [release notes](RELEASE_NOTES.md) and the public ZIP's `README_FIRST.md` and `VALIDATION.md` for full validation and compatibility guidance.
 
-The installer and restore were successfully exercised on Windows against a **separate copy of a compatible game `resources` folder**. The RC7 gameplay build completed a live in-game annual-cycle test. A separate in-game Steam launch using this final public patch installer has not been independently reported; the resulting game binaries match RC7 byte-for-byte.
-
-This mod is community-made and is not affiliated with the developer of Football Coach: College Dynasty, Steam or Valve.
+*Unofficial fan-made mod; not affiliated with Football Coach: College Dynasty, Steam or Valve.*

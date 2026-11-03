@@ -1,5 +1,7 @@
 # FCCD Prestige-Based Dynasty
 
+> **Known issue (November 3, 2026):** The Prestige recruiting AI can issue scholarship offers during preseason even though human-controlled teams cannot. A fix is undergoing testing. Until a corrected release is published, avoid advancing an important dynasty through preseason if recruiting fairness matters. An updated game engine will not automatically undo offers already saved.
+
 **Version 1.0.0 — public patch-only release**
 
 **Download:** [Latest release](https://github.com/wsuraiders33-maker/FCCD-Prestige-Based-Dynasty/releases/latest) — choose the `FCCD_Prestige_Based_Dynasty_v1_0_0_Public_Release.zip` asset, **not** GitHub's automatically generated source-code ZIP.
